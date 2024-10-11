@@ -15,4 +15,6 @@ git clone -b humble git@github.com:frankaemika/franka_ros2.git
 git clone -b galactic-devel git@github.com:sensible-robotics/fetch_ros.git
 git clone -b galactic-devel git@github.com:traclabs/yumi.git
 git clone -b devel git@github.com:ana-GT/reachability_tools.git
+git clone -b foxy-devel git@github.com:pal-robotics/backward_ros.git
+git clone -b humble-devel git@github.com:husky/husky.git
 popd
