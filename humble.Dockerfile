@@ -70,7 +70,8 @@ RUN sudo apt-get update \
   libpoco-dev \
   ros-humble-pinocchio \
   google-mock \
-  ros-humble-ament-cmake-clang-format
+  ros-humble-ament-cmake-clang-format \
+  ros-humble-launch-param-builder
   
 #RUN  pip3 install toppra --break-system-packages
 
