@@ -1,17 +1,18 @@
 #!/bin/bash
 
-MIGRATION_BRANCH=migration-task2   
+mkdir src
 pushd src
-git clone -b $MIGRATION_BRANCH git@bitbucket.org:traclabs/trac_ik_dev.git trac_ik
-git clone -b humble git@github.com:traclabs/sigslot.git
-git clone -b $MIGRATION_BRANCH git@bitbucket.org:traclabs/craftsman_core.git craftsman_core
-git clone -b $MIGRATION_BRANCH git@bitbucket.org:traclabs/craftsman_navigation_tools.git craftsman_navigation_tools
-git clone -b humble/execution_interface git@bitbucket.org:traclabs/robot_interaction_tools_dev.git robot_interaction_tools
-git clone -b main git@github.com:frankaemika/franka_description franka_description
-git clone -b $MIGRATION_BRANCH git@bitbucket.org:traclabs/tracbot_application_tools.git
-git clone -b $MIGRATION_BRANCH git@github.com:traclabs/yumi.git
-git clone -b master git@github.com:ros-controls/gz_ros2_control.git
-git clone -b rolling git@github.com:UniversalRobots/Universal_Robots_ROS2_Description.git universal_robots_ros2_description
-git clone -b ros2 git@github.com:UniversalRobots/Universal_Robots_ROS2_GZ_Simulation.git universal_robots_ros2_gz_simulation
-git clone -b main git@github.com:RoverRobotics/roverrobotics_ros2.git roverrobotics_ros2
+git clone -b rolling-devel git@bitbucket.org:traclabs/trac_ik.git trac_ik
+git clone -b humble-devel git@github.com:ana-gt/placer.git
+git clone -b humble-devel git@github.com:pal-robotics/pmb2_robot.git
+git clone -b humble-devel git@github.com:pal-robotics/tiago_robot.git
+git clone -b humble-devel git@github.com:pal-robotics/hey5_description.git
+git clone -b humble-devel git@github.com:pal-robotics/pal_gripper.git
+git clone -b foxy-devel git@github.com:pal-robotics/tiago_description_calibration.git
+git clone -b humble-devel git@github.com:pal-robotics/tiago_moveit_config.git
+git clone -b master git@github.com:pal-robotics/launch_pal.git
+git clone -b humble git@github.com:frankaemika/franka_ros2.git
+git clone -b galactic-devel git@github.com:sensible-robotics/fetch_ros.git
+git clone -b galactic-devel git@github.com:traclabs/yumi.git
+git clone -b devel git@github.com:ana-GT/reachability_tools.git
 popd

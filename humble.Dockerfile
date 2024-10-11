@@ -2,7 +2,7 @@
 # Build ros-base                               #
 # (ROS2 image with default packages)           #
 ################################################
-FROM osrf/ros:rolling-desktop-full AS rolling-base
+FROM osrf/ros:humble-desktop-full AS humble-base
 ENV DEBIAN_FRONTEND=noninteractive
 
 #RUN pip3 install cfdp pymongo tornado
@@ -37,10 +37,10 @@ WORKDIR ${CODE_DIR}
 
 
 ################################################
-# Build rolling-dev                             #
+# Build humble-dev                             #
 ################################################
 
-FROM rolling-base AS rolling-dev
+FROM humble-base AS humble-dev
 ENV DEBIAN_FRONTEND=noninteractive
 
 RUN sudo apt-get update \
@@ -48,30 +48,47 @@ RUN sudo apt-get update \
   python3-pip \ 
   libnlopt-dev \
   libnlopt-cxx-dev \
-  ros-rolling-xacro \
-  ros-rolling-joint-state-publisher \
-  ros-rolling-srdfdom \
-  ros-rolling-controller-interface \
-  ros-rolling-realtime-tools \
-  ros-rolling-control-toolbox \
-  ros-rolling-joint-state-publisher-gui \
-  ros-rolling-geometric-shapes \
-  ros-rolling-controller-manager \
-  ros-rolling-joint-trajectory-controller \
-  ros-rolling-ros-gz-sim \
-  ros-rolling-ros-gz-bridge \
-  ros-rolling-robot-localization \
-  ros-rolling-interactive-marker-twist-server \
-  ros-rolling-twist-mux \
-  ros-rolling-joy-linux \
-  ros-rolling-imu-tools 
-    
-
-RUN  pip3 install toppra --break-system-packages
+  ros-humble-xacro \
+  ros-humble-joint-state-publisher \
+  ros-humble-srdfdom \
+  ros-humble-controller-interface \
+  ros-humble-realtime-tools \
+  ros-humble-control-toolbox \
+  ros-humble-joint-state-publisher-gui \
+  ros-humble-geometric-shapes \
+  ros-humble-controller-manager \
+  ros-humble-joint-trajectory-controller \
+  ros-humble-ros-gz-sim \
+  ros-humble-ros-gz-bridge \
+  ros-humble-robot-localization \
+  ros-humble-interactive-marker-twist-server \
+  ros-humble-twist-mux \
+  ros-humble-joy-linux \
+  ros-humble-imu-tools \
+  ros-humble-control-toolbox  \
+  ros-humble-moveit-core \
+  libpoco-dev \
+  ros-humble-pinocchio \
+  google-mock \
+  ros-humble-ament-cmake-clang-format
+  
+#RUN  pip3 install toppra --break-system-packages
 
 
 RUN sudo mkdir -p ${CODE_DIR} && \
    sudo chown -R ${USERNAME}:${USERNAME} ${CODE_DIR}
+
+
+# Build libfranka
+#RUN git clone --recursive https://github.com/frankaemika/libfranka --branch 0.10.0 && \
+RUN git clone --recursive https://github.com/frankaemika/libfranka --branch 0.13.3 && \
+    cd libfranka && \
+    git submodule update && \
+    mkdir build && cd build && \
+    cmake -DCMAKE_BUILD_TYPE=Release -DBUILD_TESTS=OFF .. && \
+    cmake --build . && \
+    cpack -G DEB && \
+    sudo dpkg -i libfranka*.deb
 
 
 # Get ready withr rosws workspace

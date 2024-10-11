@@ -6,7 +6,7 @@ echo ""
 
 COMPOSE_FILE="docker-compose-dev.yml"
 CODE_DIR="/code"
-DISTRO="rolling"
+DISTRO="humble"
 
 build_rosws_code() {
   docker compose -f ${COMPOSE_FILE} run -w ${CODE_DIR}/craftsman_ws rosws /bin/bash  -ic "source /opt/ros/${DISTRO}/setup.bash && colcon build --symlink-install"

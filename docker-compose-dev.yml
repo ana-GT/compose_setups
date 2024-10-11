@@ -1,7 +1,7 @@
 services:
 
   rosws:
-    image: "rolling-dev"
+    image: "humble-dev"
     environment:
       - ROS_DOMAIN_ID=2
       - DISPLAY=novnc:0.0      
@@ -13,8 +13,8 @@ services:
         ipv4_address: 10.5.0.2          
     build:
       context: .
-      dockerfile: rolling.Dockerfile
-      target: rolling-dev
+      dockerfile: humble.Dockerfile
+      target: humble-dev
       args:
         - USER_UID=${UID:-1000}      
     volumes:
