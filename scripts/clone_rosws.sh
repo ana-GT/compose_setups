@@ -14,6 +14,7 @@ git clone -b foxy-devel git@github.com:pal-robotics/tiago_description_calibratio
 git clone -b humble-devel git@github.com:pal-robotics/tiago_moveit_config.git
 git clone -b master git@github.com:pal-robotics/launch_pal.git
 git clone -b humble git@github.com:frankaemika/franka_ros2.git
+git clone -b main git@github.com:frankaemika/franka_description.git
 git clone -b galactic-devel git@github.com:sensible-robotics/fetch_ros.git
 git clone -b galactic-devel git@github.com:traclabs/yumi.git
 git clone -b devel git@github.com:ana-GT/reachability_tools.git
