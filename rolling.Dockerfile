@@ -46,6 +46,7 @@ ENV DEBIAN_FRONTEND=noninteractive
 RUN sudo apt-get update \
  &&  sudo apt-get install -y \
   python3-pip \ 
+  python3-vcstool \
   ros-rolling-geometric-shapes \
   ros-rolling-octomap-msgs \
   ros-rolling-srdfdom \
@@ -73,9 +74,13 @@ RUN sudo apt-get update \
   libbenchmark-dev \
   libpcl-dev \
   xterm \
-  gdb
+  gdb \
+  libclang-dev
 
-RUN  pip3 install toppra --break-system-packages
+# debug is faster to install
+RUN  cargo install --debug cargo-ament-build  &&
+     pip install git+https://github.com/colcon/colcon-cargo.git
+     pip install git+https://github.com/colcon/colcon-ros-cargo.git
 
 
 RUN sudo mkdir -p ${CODE_DIR} && \
