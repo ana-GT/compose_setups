@@ -5,7 +5,6 @@
 FROM osrf/ros:rolling-desktop-full AS rolling-base
 ENV DEBIAN_FRONTEND=noninteractive
 
-#RUN pip3 install cfdp pymongo tornado
 
 # Switch to bash shell
 SHELL ["/bin/bash", "-c"]
@@ -75,12 +74,19 @@ RUN sudo apt-get update \
   libpcl-dev \
   xterm \
   gdb \
+  curl \
   libclang-dev
 
+# Install rust
+# Get Rust
+RUN curl https://sh.rustup.rs -sSf | bash -s -- -y
+RUN echo 'source /root/.cargo/env' >> /root/.bashrc
+
 # debug is faster to install
-RUN  cargo install --debug cargo-ament-build  &&
-     pip install git+https://github.com/colcon/colcon-cargo.git
-     pip install git+https://github.com/colcon/colcon-ros-cargo.git
+RUN  source /root/.cargo/env && \
+     cargo install --debug cargo-ament-build  && \
+     pip install git+https://github.com/colcon/colcon-cargo.git --break-system-packages && \
+     pip install git+https://github.com/colcon/colcon-ros-cargo.git --break-system-packages
 
 
 RUN sudo mkdir -p ${CODE_DIR} && \
