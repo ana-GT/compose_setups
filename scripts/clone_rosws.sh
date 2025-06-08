@@ -2,7 +2,7 @@
 
 mkdir src
 pushd src
-git clone -b rolling-devel git@bitbucket.org:traclabs/trac_ik.git trac_ik
+git clone -b jazzy git@bitbucket.org:traclabs/trac_ik.git trac_ik
 git clone -b humble-devel git@github.com:ana-gt/placer.git
 git clone -b humble-devel git@github.com:pal-robotics/pmb2_robot.git
 git clone -b humble-devel git@github.com:pal-robotics/tiago_robot.git
